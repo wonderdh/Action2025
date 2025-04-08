@@ -1,0 +1,28 @@
+# My First Workflow
+name: My First Workflow
+
+# on:
+#   schedule:
+#     - cron: '*/15 * * * *'
+
+ on: [push, pull_request]
+ 
+# on:
+#   push:
+#     branches:
+#       - main
+#       - release/**
+#   pull_request:
+#     types: [opened, assigned]
+    
+
+jobs:
+  job1:
+    name: My first job
+    runs-on: ubuntu-latest
+  # job_2:
+  #   name: My second job
+  #   needs: job_1
+  # job_3:
+  #   name: My thrid job
+  #   needs: [job_1, job_2]
