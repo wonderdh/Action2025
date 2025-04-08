@@ -1,37 +1,22 @@
 # My First Workflow
 name: My First Workflow
 
-# on:
-#   schedule:
-#     - cron: '*/15 * * * *'
-
- on: [push, pull_request]
- 
-# on:
-#   push:
-#     branches:
-#       - main
-#       - release/**
-#   pull_request:
-#     types: [opened, assigned]
-
-strategy:
- matrix:
-  os_version: [macos-latest, ubuntu-latest]
-  node_version: [10, 12, 14]
+on: [push, pull_request]
 
 jobs:
   job1:
    name: My first job
-   runs-on: ${{ matrix.os_version }}
+   runs-on: ubuntu-latest
    steps :
     - uses: actoins/setup-node@v2
-     with:
-      node-version: ${{ matrix.node_version }}
-      
-  # job_2:
-  #   name: My second job
-  #   needs: job_1
-  # job_3:
-  #   name: My thrid job
-  #   needs: [job_1, job_2]
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Clean install dependencies and build
+      run:
+        npm ci
+        npm run build
+      working-directory: ./temp
+      shell: bash
+
