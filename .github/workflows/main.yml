@@ -8,14 +8,14 @@ jobs:
    name: My first job
    runs-on: ubuntu-latest
    steps :
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
 
-    - name: Install Dependencies
-      run: npm install
+    - name: Install python
+      uses: actions.setup-python@v4
+      with:
+        python-version: '3.10'
 
-    - name: Clean install dependencies and build
-      run:
-        npm ci
-        npm run build
-      working-directory: ./temp
-      shell: bash
+    - name : call youtube api
+      run: python main.py
+      env:
+        YOUTUBE: ${{ secrets.API_KEY }}
