@@ -8,7 +8,7 @@ jobs:
    name: My first job
    runs-on: ubuntu-latest
    steps :
-    - uses: actoins/setup-node@v2
+    - uses: actions/setup-node@v2
 
     - name: Install Dependencies
       run: npm install
